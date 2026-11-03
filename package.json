@@ -1,0 +1,23 @@
+{
+  "name": "qnxguard",
+  "version": "1.0.0",
+  "description": "Real-Time Microkernel Memory Circuit-Breaker & IPC Anomaly Sentinel for BlackBerry QNX 8.0 RTOS",
+  "main": "src/qnx_sentinel.js",
+  "scripts": {
+    "test": "node test/qnxguard.test.js"
+  },
+  "keywords": [
+    "qnx",
+    "qnx-neutrino",
+    "rtos",
+    "microkernel",
+    "ipc",
+    "zero-trust",
+    "circuit-breaker",
+    "shannon-entropy",
+    "automotive-security",
+    "funaab"
+  ],
+  "author": "Usman Bamidele <usmanbamidele200@gmail.com> (Federal University of Agriculture, Abeokuta - FUNAAB)",
+  "license": "MIT"
+}
