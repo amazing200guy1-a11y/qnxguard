@@ -131,7 +131,7 @@
       justify-content: space-between;
       padding: 18px 0 16px;
       border-bottom: 1px solid var(--border);
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     .brand-group {
@@ -213,6 +213,59 @@
       background: var(--emerald);
       border-radius: 50%;
       box-shadow: 0 0 8px rgba(16, 185, 129, 0.7);
+    }
+
+    /* ════════════════════════ MULTI-SCREEN TAB NAVIGATION ════════════════════════ */
+    .tab-nav {
+      display: flex;
+      gap: 4px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-slate);
+      padding: 10px 18px;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      transition: all var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      color: var(--platinum);
+      background: rgba(200, 220, 240, 0.02);
+    }
+
+    .tab-btn.active {
+      color: var(--ice);
+      border-bottom-color: var(--ice);
+      background: rgba(0, 163, 224, 0.05);
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+      animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* ════════════════════════ HEADER & TELEMETRY STRIP ════════════════════════ */
@@ -604,7 +657,6 @@
       letter-spacing: 1px;
     }
 
-    /* Recessed Trays for Pipeline Nodes */
     .hud-item {
       display: flex;
       justify-content: space-between;
@@ -967,6 +1019,301 @@
       color: var(--ice);
       word-break: break-all;
     }
+
+    /* ════════════════════════ TAB 2: ECU MATRIX STYLING ════════════════════════ */
+    .ecu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 800px) {
+      .ecu-grid { grid-template-columns: 1fr; }
+    }
+
+    .ecu-card {
+      background: linear-gradient(180deg, #232C3B 0%, #171E2A 50%, #0F131C 100%);
+      border: 1px solid rgba(200, 220, 240, 0.12);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(200, 220, 240, 0.16);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .ecu-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .ecu-card-title {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ecu-card-meta {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-slate);
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+
+    .ecu-specs-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      background: #080C14;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 10px;
+      margin-bottom: 14px;
+    }
+
+    .ecu-spec-cell {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+    }
+
+    .ecu-spec-label {
+      color: var(--text-muted);
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .ecu-spec-val {
+      color: var(--platinum-bright);
+      font-weight: 700;
+    }
+
+    .ecu-actions-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-ecu-action {
+      flex: 1;
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all var(--transition);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn-ecu-send {
+      background: var(--bg-tray);
+      border: 1px solid rgba(200, 220, 240, 0.18);
+      color: var(--platinum);
+    }
+    .btn-ecu-send:hover {
+      background: var(--bg-tray-hover);
+      border-color: var(--ice);
+      color: #fff;
+    }
+
+    .btn-ecu-corrupt {
+      background: rgba(225, 29, 72, 0.10);
+      border: 1px solid rgba(225, 29, 72, 0.35);
+      color: #fda4af;
+    }
+    .btn-ecu-corrupt:hover {
+      background: rgba(225, 29, 72, 0.25);
+      border-color: var(--crimson);
+      color: #fff;
+    }
+
+    /* ════════════════════════ TAB 3: ENTROPY & EXPLOIT LAB ════════════════════════ */
+    .lab-deck {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .lab-deck { grid-template-columns: 1fr; }
+    }
+
+    .lab-card {
+      background: linear-gradient(180deg, #232C3B 0%, #171E2A 50%, #0F131C 100%);
+      border: 1px solid rgba(200, 220, 240, 0.12);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(200, 220, 240, 0.16);
+    }
+
+    .entropy-gauge-wrap {
+      background: #080C14;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .entropy-val-big {
+      font-family: var(--font-mono);
+      font-size: 38px;
+      font-weight: 800;
+      color: var(--ice);
+      letter-spacing: -1px;
+    }
+
+    .entropy-bar-track {
+      height: 8px;
+      background: #1E2838;
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 12px 0 8px;
+      position: relative;
+    }
+
+    .entropy-bar-fill {
+      height: 100%;
+      width: 44%;
+      background: linear-gradient(90deg, var(--emerald) 0%, var(--ice) 60%, var(--crimson) 100%);
+      transition: width 0.3s ease;
+    }
+
+    .entropy-threshold-marker {
+      position: absolute;
+      left: 90%;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: var(--crimson);
+      box-shadow: 0 0 6px var(--crimson);
+    }
+
+    .hex-viewer-box {
+      background: #080C14;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      line-height: 1.7;
+      max-height: 220px;
+      overflow-y: auto;
+      color: var(--text-slate);
+    }
+
+    .hex-nop { color: #f59e0b; font-weight: 700; background: rgba(245, 158, 11, 0.15); padding: 1px 3px; border-radius: 2px; }
+    .hex-shell { color: #f43f5e; font-weight: 700; background: rgba(225, 29, 72, 0.15); padding: 1px 3px; border-radius: 2px; }
+    .hex-ascii { color: var(--platinum); margin-left: 14px; border-left: 1px solid var(--border); padding-left: 12px; }
+
+    /* ════════════════════════ TAB 4: AUDIT LEDGER STYLING ════════════════════════ */
+    .audit-action-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn-chain-verify {
+      padding: 8px 18px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: var(--emerald);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-chain-verify:hover {
+      background: rgba(16, 185, 129, 0.28);
+      border-color: var(--emerald);
+    }
+
+    .btn-tamper-test {
+      padding: 8px 18px;
+      background: rgba(225, 29, 72, 0.12);
+      border: 1px solid rgba(225, 29, 72, 0.4);
+      color: #fda4af;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-tamper-test:hover {
+      background: rgba(225, 29, 72, 0.25);
+      border-color: var(--crimson);
+      color: #fff;
+    }
+
+    .btn-export-json {
+      padding: 8px 18px;
+      background: var(--bg-tray);
+      border: 1px solid rgba(200, 220, 240, 0.2);
+      color: var(--platinum);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-export-json:hover {
+      background: var(--bg-tray-hover);
+      border-color: var(--ice);
+      color: #fff;
+    }
+
+    .full-ledger-card {
+      background: #080C14;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-bottom: 12px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      transition: border-color var(--transition);
+    }
+    .full-ledger-card:hover {
+      border-color: rgba(200, 220, 240, 0.25);
+    }
+    .full-ledger-card.tampered {
+      border-color: var(--crimson);
+      background: rgba(225, 29, 72, 0.05);
+    }
   </style>
 </head>
 <body>
@@ -991,321 +1338,589 @@
     </div>
   </nav>
 
-  <!-- HEADER & TELEMETRY STRIP -->
-  <section class="cockpit-top-section">
-    <div class="hero-kicker-row">
-      <div class="hero-kicker">
-        <svg class="ico" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-        BlackBerry QNX Global Hackathon 2026 &mdash; Low-Level &amp; Embedded Defense
-      </div>
-      <div class="brand-code">ARCHITECTURE SPEC v8.0</div>
-    </div>
-    <h1 class="hero-headline">
-      <span class="hero-headline-titanium">Microkernel Memory Circuit-Breaker</span><br>
-      <span class="hero-headline-ice">&amp; IPC Anomaly Sentinel</span>
-    </h1>
-    <p class="hero-sub">
-      Deterministic fail-closed memory sentinel and synchronous message scanner for BlackBerry QNX Neutrino 8.0 RTOS. Intercepts CAN-bus parameter tampering, NOP-sled buffer overflows, ROP pivot gadgets, and DoS channel flooding at 0.018ms latency with zero false-positive disruption across ISO 26262 ASIL-D automotive ECUs.
-    </p>
+  <!-- 4-TAB NAVIGATION BAR -->
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('tab-sentinel', this)">
+      <svg class="ico" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Microkernel IPC Sentinel
+    </button>
+    <button class="tab-btn" onclick="switchTab('tab-matrix', this)">
+      <svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+      Automotive CAN Matrix (8 ECUs)
+    </button>
+    <button class="tab-btn" onclick="switchTab('tab-entropy', this)">
+      <svg class="ico" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      Shannon Entropy &amp; Exploit Lab
+    </button>
+    <button class="tab-btn" onclick="switchTab('tab-ledger', this)">
+      <svg class="ico" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      Flight Recorder &amp; Audit Chain
+    </button>
+  </div>
 
-    <!-- 4-METRIC TITANIUM STRIP -->
-    <div class="cockpit-metrics-grid">
-      <div class="cockpit-metric-card">
-        <div class="metric-card-header">
-          <div class="metric-card-label">Kernel IPC Latency</div>
-          <div class="metric-icon-wrap">
-            <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
+  <!-- ════════════════════════ TAB 1: SENTINEL SCREEN ════════════════════════ -->
+  <div id="tab-sentinel" class="tab-panel active">
+
+    <!-- HEADER & TELEMETRY STRIP -->
+    <section class="cockpit-top-section">
+      <div class="hero-kicker-row">
+        <div class="hero-kicker">
+          <svg class="ico" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          BlackBerry QNX Global Hackathon 2026 &mdash; Low-Level &amp; Embedded Defense
         </div>
-        <div class="metric-card-val">0.018 <span>MS (SUB-US)</span></div>
+        <div class="brand-code">ARCHITECTURE SPEC v8.0</div>
       </div>
+      <h1 class="hero-headline">
+        <span class="hero-headline-titanium">Microkernel Memory Circuit-Breaker</span><br>
+        <span class="hero-headline-ice">&amp; IPC Anomaly Sentinel</span>
+      </h1>
+      <p class="hero-sub">
+        Deterministic fail-closed memory sentinel and synchronous message scanner for BlackBerry QNX Neutrino 8.0 RTOS. Intercepts CAN-bus parameter tampering, NOP-sled buffer overflows, ROP pivot gadgets, and DoS channel flooding at 0.018ms latency with zero false-positive disruption across ISO 26262 ASIL-D automotive ECUs.
+      </p>
 
-      <div class="cockpit-metric-card">
-        <div class="metric-card-header">
-          <div class="metric-card-label">Circuit Breaker</div>
-          <div class="metric-icon-wrap">
-            <svg class="ico" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <!-- 4-METRIC TITANIUM STRIP -->
+      <div class="cockpit-metrics-grid">
+        <div class="cockpit-metric-card">
+          <div class="metric-card-header">
+            <div class="metric-card-label">Kernel IPC Latency</div>
+            <div class="metric-icon-wrap">
+              <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
           </div>
-        </div>
-        <div class="metric-card-val" id="hudState" style="color: var(--emerald);">ARMED <span>FAIL-CLOSED</span></div>
-      </div>
-
-      <div class="cockpit-metric-card">
-        <div class="metric-card-header">
-          <div class="metric-card-label">Safety Invariants</div>
-          <div class="metric-icon-wrap">
-            <svg class="ico" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          </div>
-        </div>
-        <div class="metric-card-val">100% <span>ASIL-D HARDWARE</span></div>
-      </div>
-
-      <div class="cockpit-metric-card">
-        <div class="metric-card-header">
-          <div class="metric-card-label">Flight Recorder</div>
-          <div class="metric-icon-wrap">
-            <svg class="ico" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          </div>
-        </div>
-        <div class="metric-card-val" id="metricBlocks">11 <span>SEALED BLOCKS</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- UNIFIED COCKPIT SPLIT DECK (TERMINAL + SHIELD FIELD TOGETHER) -->
-  <div class="cockpit-main-deck">
-
-    <!-- LEFT: Interactive Sentinel Terminal -->
-    <div class="cockpit-preview">
-      <div class="cockpit-header">
-        <div class="cockpit-title">
-          <div class="telemetry-dots">
-            <div class="tdot r"></div>
-            <div class="tdot y"></div>
-            <div class="tdot g"></div>
-          </div>
-          <svg class="ico" viewBox="0 0 24 24"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
-          QNX 8.0 MICROKERNEL IPC SCANNER // PROTOCOL_SANDBOX
-        </div>
-        <div class="cockpit-status-tag" id="statusTag">SANDBOX SIMULATION ACTIVE</div>
-      </div>
-
-      <div class="cockpit-terminal-screen" id="termScreen">
-        <div class="line-dim">[SYS_BOOT] QNX Neutrino RTOS 8.0.0 (x86_64) Microkernel Initialized.</div>
-        <div class="line-dim">[IPC_GATE] Synchronous interceptor bound to MsgSend / MsgReceive.</div>
-        <div class="line-dim">[ENTROPY] Shannon distribution baseline calibrated (3.0 - 5.5 bits/byte).</div>
-        <div class="line-dim">[CIRCUIT] QNXGuard fail-closed circuit breaker ARMED. 8 channels secured.</div>
-        <div class="line-dim">--------------------------------------------------------------------------------</div>
-        <div class="line-white">Select a preset scenario below or enter custom QNX IPC message frame.</div>
-        <div class="line-slate">Direct commands: "CAN:0x108:BRAKE" | "CAN:0x120:STEER" | "NOP_SLED" | "DOS_BURST"</div>
-        <div class="line-dim">--------------------------------------------------------------------------------</div>
-      </div>
-
-      <div class="cockpit-input-bar">
-        <div class="input-prompt">&gt;</div>
-        <input id="agentInput" type="text" placeholder="Enter IPC payload buffer (e.g. CAN:0x108:VELOCITY=104_KMH)..." autocomplete="off" />
-        <button id="runBtn" class="btn-titanium-exec" onclick="dispatchFrame()">
-          <svg class="ico" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-          Dispatch Frame
-        </button>
-      </div>
-
-      <div class="cockpit-preset-strip">
-        <div class="preset-label">Presets:</div>
-        <button class="chip-titanium" onclick="setCmd('CAN:0x108:BRAKE_ACTUATOR_VELOCITY=104_KMH:AEB_DISENGAGED')">
-          <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-          Braking ECU (104 km/h)
-        </button>
-        <button class="chip-titanium" onclick="setCmd('CAN:0x120:STEER_ANGLE=+0.42_RAD:TORQUE_NOMINAL')">
-          <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
-          Steering (0.42 rad)
-        </button>
-        <button class="chip-titanium" onclick="setCmd('CAN:0x150:CELL_MAX_TEMP=34.2C:VOLTAGE_788V')">
-          <svg class="ico" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          BMS Battery (34.2&deg;C)
-        </button>
-        <button class="chip-titanium alert" onclick="setCmd('ATTACK_NOP_SLED:\x90\x90\x90\x90\x90\x90\x90\x90\x31\xc0\x50\x68//sh\x68/bin\x89\xe3\x50\x53\x89\xe1\xb0\x0b\xcd\x80')">
-          <svg class="ico" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-          NOP Sled Overflow
-        </button>
-        <button class="chip-titanium alert" onclick="setCmd('ATTACK_HIGH_ENTROPY:\xbf\x9e\x71\x8a\xc3\x52\x9d\x41\xfe\xbb\x88\x12\x49\xa7\xee\x2b\x65\x90\xcc\xdd\x0f\x05')">
-          <svg class="ico" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          Entropy Shellcode
-        </button>
-        <button class="chip-titanium alert" onclick="setCmd('CAN:0x108:BRAKE_PRESSURE=0_BAR:SAFETY_OVERRIDE=0xFF:IGNITION_OFF')">
-          <svg class="ico" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          Safety Override Spoof
-        </button>
-        <button class="chip-titanium alert" onclick="triggerDosBurst()">
-          <svg class="ico" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          DoS Channel Flood
-        </button>
-      </div>
-    </div>
-
-    <!-- RIGHT: Defense Scoreboard & SHIELD FIELD -->
-    <div class="cockpit-side-hud">
-
-      <!-- CARD 1: Microkernel Shield Field (6 Nodes Armed) -->
-      <div class="hud-card">
-        <div class="hud-card-header">
-          <div class="hud-card-title">
-            <svg class="ico" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            Microkernel Shield Field
-          </div>
-          <div class="hud-badge-platinum">6 NODES ARMED</div>
+          <div class="metric-card-val">0.018 <span>MS (SUB-US)</span></div>
         </div>
 
-        <div class="hud-item">
-          <div class="hud-item-meta">
+        <div class="cockpit-metric-card">
+          <div class="metric-card-header">
+            <div class="metric-card-label">Circuit Breaker</div>
+            <div class="metric-icon-wrap">
+              <svg class="ico" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+          </div>
+          <div class="metric-card-val" id="hudState" style="color: var(--emerald);">ARMED <span>FAIL-CLOSED</span></div>
+        </div>
+
+        <div class="cockpit-metric-card">
+          <div class="metric-card-header">
+            <div class="metric-card-label">Safety Invariants</div>
+            <div class="metric-icon-wrap">
+              <svg class="ico" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+          </div>
+          <div class="metric-card-val">100% <span>ASIL-D HARDWARE</span></div>
+        </div>
+
+        <div class="cockpit-metric-card">
+          <div class="metric-card-header">
+            <div class="metric-card-label">Flight Recorder</div>
+            <div class="metric-icon-wrap">
+              <svg class="ico" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+          </div>
+          <div class="metric-card-val" id="metricBlocks">11 <span>SEALED BLOCKS</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UNIFIED COCKPIT SPLIT DECK (TERMINAL + SHIELD FIELD TOGETHER) -->
+    <div class="cockpit-main-deck">
+
+      <!-- LEFT: Interactive Sentinel Terminal -->
+      <div class="cockpit-preview">
+        <div class="cockpit-header">
+          <div class="cockpit-title">
+            <div class="telemetry-dots">
+              <div class="tdot r"></div>
+              <div class="tdot y"></div>
+              <div class="tdot g"></div>
+            </div>
             <svg class="ico" viewBox="0 0 24 24"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
-            <div class="hud-item-name">[01] Synchronous IPC Gate</div>
+            QNX 8.0 MICROKERNEL IPC SCANNER // PROTOCOL_SANDBOX
           </div>
-          <div class="hud-item-tag">ChannelCreate()</div>
+          <div class="cockpit-status-tag" id="statusTag">SANDBOX SIMULATION ACTIVE</div>
         </div>
 
-        <div class="hud-item">
-          <div class="hud-item-meta">
-            <svg class="ico" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <div class="hud-item-name">[02] Shannon Memory Shield</div>
-          </div>
-          <div class="hud-item-tag">H &lt; 7.75 bits/B</div>
+        <div class="cockpit-terminal-screen" id="termScreen">
+          <div class="line-dim">[SYS_BOOT] QNX Neutrino RTOS 8.0.0 (x86_64) Microkernel Initialized.</div>
+          <div class="line-dim">[IPC_GATE] Synchronous interceptor bound to MsgSend / MsgReceive.</div>
+          <div class="line-dim">[ENTROPY] Shannon distribution baseline calibrated (3.0 - 5.5 bits/byte).</div>
+          <div class="line-dim">[CIRCUIT] QNXGuard fail-closed circuit breaker ARMED. 8 channels secured.</div>
+          <div class="line-dim">--------------------------------------------------------------------------------</div>
+          <div class="line-white">Select a preset scenario below or enter custom QNX IPC message frame.</div>
+          <div class="line-slate">Direct commands: "CAN:0x108:BRAKE" | "CAN:0x120:STEER" | "NOP_SLED" | "DOS_BURST"</div>
+          <div class="line-dim">--------------------------------------------------------------------------------</div>
         </div>
 
-        <div class="hud-item">
-          <div class="hud-item-meta">
+        <div class="cockpit-input-bar">
+          <div class="input-prompt">&gt;</div>
+          <input id="agentInput" type="text" placeholder="Enter IPC payload buffer (e.g. CAN:0x108:VELOCITY=104_KMH)..." autocomplete="off" />
+          <button id="runBtn" class="btn-titanium-exec" onclick="dispatchFrame()">
+            <svg class="ico" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Dispatch Frame
+          </button>
+        </div>
+
+        <div class="cockpit-preset-strip">
+          <div class="preset-label">Presets:</div>
+          <button class="chip-titanium" onclick="setCmd('CAN:0x108:BRAKE_ACTUATOR_VELOCITY=104_KMH:AEB_DISENGAGED')">
+            <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            Braking ECU (104 km/h)
+          </button>
+          <button class="chip-titanium" onclick="setCmd('CAN:0x120:STEER_ANGLE=+0.42_RAD:TORQUE_NOMINAL')">
+            <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
+            Steering (0.42 rad)
+          </button>
+          <button class="chip-titanium" onclick="setCmd('CAN:0x150:CELL_MAX_TEMP=34.2C:VOLTAGE_788V')">
             <svg class="ico" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-            <div class="hud-item-name">[03] ROP Pivot Disrupter</div>
-          </div>
-          <div class="hud-item-tag">NON-EXEC STACK</div>
-        </div>
-
-        <div class="hud-item">
-          <div class="hud-item-meta">
-            <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <div class="hud-item-name">[04] ISO 26262 ASIL-D Governor</div>
-          </div>
-          <div class="hud-item-tag">HARDWARE CERT</div>
-        </div>
-
-        <div class="hud-item">
-          <div class="hud-item-meta">
-            <svg class="ico" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-            <div class="hud-item-name">[05] Channel Circuit-Breaker</div>
-          </div>
-          <div class="hud-item-tag">ChannelDestroy()</div>
-        </div>
-
-        <div class="hud-item">
-          <div class="hud-item-meta">
-            <svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg>
-            <div class="hud-item-name">[06] QNX Neutrino Microkernel</div>
-          </div>
-          <div class="hud-item-tag">RING 0 MMU</div>
+            BMS Battery (34.2&deg;C)
+          </button>
+          <button class="chip-titanium alert" onclick="setCmd('ATTACK_NOP_SLED:\x90\x90\x90\x90\x90\x90\x90\x90\x31\xc0\x50\x68//sh\x68/bin\x89\xe3\x50\x53\x89\xe1\xb0\x0b\xcd\x80')">
+            <svg class="ico" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            NOP Sled Overflow
+          </button>
+          <button class="chip-titanium alert" onclick="setCmd('ATTACK_HIGH_ENTROPY:\xbf\x9e\x71\x8a\xc3\x52\x9d\x41\xfe\xbb\x88\x12\x49\xa7\xee\x2b\x65\x90\xcc\xdd\x0f\x05')">
+            <svg class="ico" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Entropy Shellcode
+          </button>
+          <button class="chip-titanium alert" onclick="setCmd('CAN:0x108:BRAKE_PRESSURE=0_BAR:SAFETY_OVERRIDE=0xFF:IGNITION_OFF')">
+            <svg class="ico" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Safety Override Spoof
+          </button>
+          <button class="chip-titanium alert" onclick="triggerDosBurst()">
+            <svg class="ico" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            DoS Channel Flood
+          </button>
         </div>
       </div>
 
-      <!-- CARD 2: Hardware Invariants & Telemetry HUD -->
-      <div class="hud-card">
+      <!-- RIGHT: Defense Scoreboard & SHIELD FIELD -->
+      <div class="cockpit-side-hud">
+
+        <!-- CARD 1: Microkernel Shield Field (6 Nodes Armed) -->
+        <div class="hud-card">
+          <div class="hud-card-header">
+            <div class="hud-card-title">
+              <svg class="ico" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Microkernel Shield Field
+            </div>
+            <div class="hud-badge-platinum">6 NODES ARMED</div>
+          </div>
+
+          <div class="hud-item">
+            <div class="hud-item-meta">
+              <svg class="ico" viewBox="0 0 24 24"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+              <div class="hud-item-name">[01] Synchronous IPC Gate</div>
+            </div>
+            <div class="hud-item-tag">ChannelCreate()</div>
+          </div>
+
+          <div class="hud-item">
+            <div class="hud-item-meta">
+              <svg class="ico" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <div class="hud-item-name">[02] Shannon Memory Shield</div>
+            </div>
+            <div class="hud-item-tag">H &lt; 7.75 bits/B</div>
+          </div>
+
+          <div class="hud-item">
+            <div class="hud-item-meta">
+              <svg class="ico" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              <div class="hud-item-name">[03] ROP Pivot Disrupter</div>
+            </div>
+            <div class="hud-item-tag">NON-EXEC STACK</div>
+          </div>
+
+          <div class="hud-item">
+            <div class="hud-item-meta">
+              <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <div class="hud-item-name">[04] ISO 26262 ASIL-D Governor</div>
+            </div>
+            <div class="hud-item-tag">HARDWARE CERT</div>
+          </div>
+
+          <div class="hud-item">
+            <div class="hud-item-meta">
+              <svg class="ico" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+              <div class="hud-item-name">[05] Channel Circuit-Breaker</div>
+            </div>
+            <div class="hud-item-tag">ChannelDestroy()</div>
+          </div>
+
+          <div class="hud-item">
+            <div class="hud-item-meta">
+              <svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg>
+              <div class="hud-item-name">[06] QNX Neutrino Microkernel</div>
+            </div>
+            <div class="hud-item-tag">RING 0 MMU</div>
+          </div>
+        </div>
+
+        <!-- CARD 2: Hardware Invariants & Telemetry HUD -->
+        <div class="hud-card">
+          <div class="hud-card-header">
+            <div class="hud-card-title">
+              <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              Hardware Safety Invariants
+            </div>
+            <div class="hud-badge-platinum">INSTITUTIONAL</div>
+          </div>
+
+          <div class="hud-item">
+            <div class="hud-item-meta">
+              <svg class="ico" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              <div class="hud-item-name">Frame Boundary (&le; 512B)</div>
+            </div>
+            <div class="hud-item-tag" id="invBuffer">ENFORCED</div>
+          </div>
+
+          <div class="hud-item">
+            <div class="hud-item-meta">
+              <svg class="ico" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              <div class="hud-item-name">Shannon Entropy Shellcode</div>
+            </div>
+            <div class="hud-item-tag" id="invEntropy">ACTIVE (&lt;7.75)</div>
+          </div>
+
+          <div class="hud-item">
+            <div class="hud-item-meta">
+              <svg class="ico" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              <div class="hud-item-name">CAN Safety Bit (0x00 Override)</div>
+            </div>
+            <div class="hud-item-tag" id="invBrake">SECURE</div>
+          </div>
+
+          <div class="hud-item">
+            <div class="hud-item-meta">
+              <svg class="ico" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              <div class="hud-item-name">DoS Channel Throttle (&le; 100/s)</div>
+            </div>
+            <div class="hud-item-tag" id="invRate">MONITORED</div>
+          </div>
+
+          <div class="hud-btn-row">
+            <button class="hud-btn-restore" onclick="rootRestore()">
+              <svg class="ico" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+              Root Restore
+            </button>
+            <button class="hud-btn-panic" onclick="manualIsolate()">
+              <svg class="ico" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Panic Isolate
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CRITICAL ECU SUBSYSTEM TRAY GRID -->
+    <div class="section-headline">Secured Automotive Subsystem Channels (ISO 26262 ASIL-D)</div>
+    <div class="catalog-grid">
+      <div class="catalog-tray">
+        <div class="tray-icon-box"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <div class="tray-body"><div class="tray-title">Braking ECU (0x108)</div><div class="tray-price">ASIL-D ACTUATOR</div></div>
+      </div>
+      <div class="catalog-tray">
+        <div class="tray-icon-box"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <div class="tray-body"><div class="tray-title">EPS Steering (0x120)</div><div class="tray-price">STEER-BY-WIRE</div></div>
+      </div>
+      <div class="catalog-tray">
+        <div class="tray-icon-box"><svg class="ico" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <div class="tray-body"><div class="tray-title">Powertrain BMS (0x150)</div><div class="tray-price">800V HV PACK</div></div>
+      </div>
+      <div class="catalog-tray">
+        <div class="tray-icon-box"><svg class="ico" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/></svg></div>
+        <div class="tray-body"><div class="tray-title">Digital Cockpit (0x210)</div><div class="tray-price">QNX NEUTRINO</div></div>
+      </div>
+      <div class="catalog-tray">
+        <div class="tray-icon-box"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <div class="tray-body"><div class="tray-title">ADAS Radar/LiDAR (0x240)</div><div class="tray-price">EMERGENCY BRAKE</div></div>
+      </div>
+      <div class="catalog-tray">
+        <div class="tray-icon-box"><svg class="ico" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="tray-body"><div class="tray-title">Gateway Router (0x280)</div><div class="tray-price">SECURE ETHERNET</div></div>
+      </div>
+    </div>
+
+    <!-- REAL-TIME TELEMETRY AUDIT LOG -->
+    <div class="audit-cockpit">
+      <div class="audit-grid-header">
+        <div>IPC Buffer Payload / Dispatched Message</div>
+        <div>Subsystem Channel</div>
+        <div>SHA-256 Flight Hash</div>
+        <div>Kernel Verdict</div>
+      </div>
+      <div class="audit-stream-deck" id="auditStream">
+        <div class="audit-row">
+          <div class="audit-payload">CAN:0x108:BRAKE_PRESSURE=42_BAR:ABS_ACTIVE:SYNC_EOK</div>
+          <div class="audit-channel">Braking ECU (0x108)</div>
+          <div class="audit-hash">7a8b9c...4f1e</div>
+          <div><span class="badge-clean">COMMITTED (0.018ms)</span></div>
+        </div>
+        <div class="audit-row">
+          <div class="audit-payload">CAN:0x120:STEER_ANGLE=+0.18_RAD:TORQUE_NOMINAL</div>
+          <div class="audit-channel">EPS Steering (0x120)</div>
+          <div class="audit-hash">b1c2d3...8e9a</div>
+          <div><span class="badge-clean">COMMITTED (0.019ms)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAMPER-EVIDENT FLIGHT RECORDER STREAM -->
+    <div class="ledger-deck">
+      <div class="ledger-header">
+        <div class="ledger-title">
+          <svg class="ico" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Tamper-Evident SHA-256 Flight Recorder Block Ledger
+        </div>
+        <div class="titanium-pill" id="blockCountPill">11 BLOCKS SEALED</div>
+      </div>
+      <div class="flight-blocks-row" id="flightBlocksBox">
+        <!-- Injected by JavaScript -->
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ════════════════════════ TAB 2: AUTOMOTIVE CAN MATRIX ════════════════════════ -->
+  <div id="tab-matrix" class="tab-panel">
+    <div class="cockpit-top-section">
+      <div class="hero-kicker-row">
+        <div class="hero-kicker">
+          <svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+          ISO 26262 ASIL-D ECU Subsystem Topology
+        </div>
+        <div class="brand-code">8 CHANNELS ISOLATED</div>
+      </div>
+      <h1 class="hero-headline">
+        <span class="hero-headline-titanium">Automotive CAN-Bus Subsystem Matrix</span><br>
+        <span class="hero-headline-ice">Microkernel Channel Isolation (`ChannelCreate`)</span>
+      </h1>
+      <p class="hero-sub">
+        Every critical automotive ECU connects to QNX Neutrino via dedicated synchronous channels (`chid 1-8`). If an ECU experiences a buffer overrun or DoS attack, QNXGuard triggers `ChannelDestroy()` on that specific channel without bringing down steering, powertrain, or the RTOS kernel.
+      </p>
+    </div>
+
+    <!-- 8-ECU GRID -->
+    <div class="ecu-grid" id="ecuGrid">
+      <!-- 1. Braking ECU -->
+      <div class="ecu-card" id="ecu-card-1">
+        <div>
+          <div class="ecu-card-top">
+            <div class="ecu-card-title">
+              <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              Braking ECU (Channel 0x108)
+            </div>
+            <div class="hud-item-tag" id="ecu-status-1" style="color: var(--emerald);">CONNECTED</div>
+          </div>
+          <div class="ecu-card-meta">
+            ASIL-D Electronic Brake Control Module (EBCM). ABS &amp; ESC modulation with hard real-time synchronization.
+          </div>
+          <div class="ecu-specs-row">
+            <div class="ecu-spec-cell"><div class="ecu-spec-label">Channel ID</div><div class="ecu-spec-val">chid #1</div></div>
+            <div class="ecu-spec-cell"><div class="ecu-spec-label">State</div><div class="ecu-spec-val">REPLY_BLOCKED</div></div>
+            <div class="ecu-spec-cell"><div class="ecu-spec-label">Latency</div><div class="ecu-spec-val">0.018 ms</div></div>
+          </div>
+        </div>
+        <div class="ecu-actions-row">
+          <button class="btn-ecu-action btn-ecu-send" onclick="simulateECU(1, 'CAN:0x108:BRAKE_PRESS=38_BAR:ABS_ACTIVE')">Dispatch Frame</button>
+          <button class="btn-ecu-action btn-ecu-corrupt" onclick="corruptECU(1, 'CAN:0x108:OVERRIDE_0xFF:FAIL')">Simulate Attack</button>
+        </div>
+      </div>
+
+      <!-- 2. EPS Steer-by-Wire -->
+      <div class="ecu-card" id="ecu-card-2">
+        <div>
+          <div class="ecu-card-top">
+            <div class="ecu-card-title">
+              <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
+              EPS Steer-by-Wire (0x120)
+            </div>
+            <div class="hud-item-tag" id="ecu-status-2" style="color: var(--emerald);">CONNECTED</div>
+          </div>
+          <div class="ecu-card-meta">
+            ASIL-D Electric Power Steering. Redundant dual-channel motor torque and steering rack position control.
+          </div>
+          <div class="ecu-specs-row">
+            <div class="ecu-spec-cell"><div class="ecu-spec-label">Channel ID</div><div class="ecu-spec-val">chid #2</div></div>
+            <div class="ecu-spec-cell"><div class="ecu-spec-label">State</div><div class="ecu-spec-val">RECEIVE_BLOCKED</div></div>
+            <div class="ecu-spec-cell"><div class="ecu-spec-label">Latency</div><div class="ecu-spec-val">0.019 ms</div></div>
+          </div>
+        </div>
+        <div class="ecu-actions-row">
+          <button class="btn-ecu-action btn-ecu-send" onclick="simulateECU(2, 'CAN:0x120:STEER_ANGLE=+0.21_RAD')">Dispatch Frame</button>
+          <button class="btn-ecu-action btn-ecu-corrupt" onclick="corruptECU(2, 'CAN:0x120:FORCE_LOCKOUT')">Simulate Attack</button>
+        </div>
+      </div>
+
+      <!-- 3. Powertrain BMS -->
+      <div class="ecu-card" id="ecu-card-3">
+        <div>
+          <div class="ecu-card-top">
+            <div class="ecu-card-title">
+              <svg class="ico" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Powertrain BMS (0x150)
+            </div>
+            <div class="hud-item-tag" id="ecu-status-3" style="color: var(--emerald);">CONNECTED</div>
+          </div>
+          <div class="ecu-card-meta">
+            ASIL-C 800V High Voltage Battery Management System. Cell temperature and isolation resistance telemetry.
+          </div>
+          <div class="ecu-specs-row">
+            <div class="ecu-spec-cell"><div class="ecu-spec-label">Channel ID</div><div class="ecu-spec-val">chid #3</div></div>
+            <div class="ecu-spec-cell"><div class="ecu-spec-label">State</div><div class="ecu-spec-val">READY</div></div>
+            <div class="ecu-spec-cell"><div class="ecu-spec-label">Latency</div><div class="ecu-spec-val">0.021 ms</div></div>
+          </div>
+        </div>
+        <div class="ecu-actions-row">
+          <button class="btn-ecu-action btn-ecu-send" onclick="simulateECU(3, 'CAN:0x150:CELL_TEMP=32.4C:VOLT=792V')">Dispatch Frame</button>
+          <button class="btn-ecu-action btn-ecu-corrupt" onclick="corruptECU(3, 'CAN:0x150:THERMAL_RUNAWAY_SPOOF')">Simulate Attack</button>
+        </div>
+      </div>
+
+      <!-- 4. Digital Cockpit -->
+      <div class="ecu-card" id="ecu-card-4">
+        <div>
+          <div class="ecu-card-top">
+            <div class="ecu-card-title">
+              <svg class="ico" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/></svg>
+              Digital Instrument Cluster (0x210)
+            </div>
+            <div class="hud-item-tag" id="ecu-status-4" style="color: var(--emerald);">CONNECTED</div>
+          </div>
+          <div class="ecu-card-meta">
+            ASIL-B QNX Neutrino Digital Instrument Cluster. Real-time gauge rendering &amp; warning telltales.
+          </div>
+          <div class="ecu-specs-row">
+            <div class="ecu-spec-cell"><div class="ecu-spec-label">Channel ID</div><div class="ecu-spec-val">chid #4</div></div>
+            <div class="ecu-spec-cell"><div class="ecu-spec-label">State</div><div class="ecu-spec-val">RENDER_SYNC</div></div>
+            <div class="ecu-spec-cell"><div class="ecu-spec-label">Latency</div><div class="ecu-spec-val">0.024 ms</div></div>
+          </div>
+        </div>
+        <div class="ecu-actions-row">
+          <button class="btn-ecu-action btn-ecu-send" onclick="simulateECU(4, 'CAN:0x210:CLUSTER_UPDATE_60FPS')">Dispatch Frame</button>
+          <button class="btn-ecu-action btn-ecu-corrupt" onclick="corruptECU(4, 'CAN:0x210:TELLTALE_HIJACK')">Simulate Attack</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════ TAB 3: SHANNON ENTROPY LAB ════════════════════════ -->
+  <div id="tab-entropy" class="tab-panel">
+    <div class="cockpit-top-section">
+      <div class="hero-kicker-row">
+        <div class="hero-kicker">
+          <svg class="ico" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Shannon Entropy &amp; Shellcode Inspection Engine
+        </div>
+        <div class="brand-code">H = -&Sigma; p(x) log2 p(x)</div>
+      </div>
+      <h1 class="hero-headline">
+        <span class="hero-headline-titanium">Real-Time Shannon Entropy Analyzer</span><br>
+        <span class="hero-headline-ice">Mathematical Memory Shellcode &amp; ROP Trap</span>
+      </h1>
+      <p class="hero-sub">
+        Standard automotive CAN telemetry exhibits an entropy range of 2.8 to 4.8 bits/byte. Encrypted shellcode, polymorphic NOP-sleds, and ROP pivot sequences exhibit high entropy (>7.20 bits/byte). QNXGuard calculates Shannon entropy over every synchronous IPC message before execution.
+      </p>
+    </div>
+
+    <div class="lab-deck">
+      <!-- Left: Interactive Analyzer -->
+      <div class="lab-card">
         <div class="hud-card-header">
           <div class="hud-card-title">
-            <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            Hardware Safety Invariants
+            <svg class="ico" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Interactive Entropy Laboratory
           </div>
-          <div class="hud-badge-platinum">INSTITUTIONAL</div>
+          <div class="hud-badge-platinum">MATH ENGINE</div>
         </div>
 
-        <div class="hud-item">
-          <div class="hud-item-meta">
-            <svg class="ico" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            <div class="hud-item-name">Frame Boundary (&le; 512B)</div>
+        <div class="entropy-gauge-wrap">
+          <div class="metric-card-label">Calculated Shannon Entropy</div>
+          <div class="entropy-val-big" id="labEntropyVal">3.412 <span style="font-size: 14px; color: var(--text-slate);">bits/byte</span></div>
+          <div class="entropy-bar-track">
+            <div class="entropy-bar-fill" id="labEntropyBar" style="width: 42%;"></div>
+            <div class="entropy-threshold-marker" title="Trip Threshold: 7.20 bits/byte"></div>
           </div>
-          <div class="hud-item-tag" id="invBuffer">ENFORCED</div>
+          <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 9px; color: var(--text-muted);">
+            <span>0.00 (Uniform Zeroes)</span>
+            <span style="color: var(--emerald);">3.50 (CAN Telemetry)</span>
+            <span style="color: var(--crimson);">7.20 (TRIP THRESHOLD)</span>
+            <span>8.00 (Pure Random)</span>
+          </div>
         </div>
 
-        <div class="hud-item">
-          <div class="hud-item-meta">
-            <svg class="ico" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            <div class="hud-item-name">Shannon Entropy Shellcode</div>
-          </div>
-          <div class="hud-item-tag" id="invEntropy">ACTIVE (&lt;7.75)</div>
-        </div>
+        <div style="font-family: var(--font-mono); font-size: 11px; margin-bottom: 8px; color: var(--platinum);">Test Arbitrary Buffer Payload:</div>
+        <textarea id="labInput" rows="3" style="width: 100%; background: #080C14; border: 1px solid var(--border); border-radius: 6px; padding: 10px; font-family: var(--font-mono); font-size: 11.5px; color: var(--platinum); resize: none; margin-bottom: 12px;" oninput="updateLabEntropy()">CAN_FRAME:0x108:BRAKE_PRESSURE=42_BAR:ABS_ARMED:NOMINAL</textarea>
 
-        <div class="hud-item">
-          <div class="hud-item-meta">
-            <svg class="ico" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            <div class="hud-item-name">CAN Safety Bit (0x00 Override)</div>
-          </div>
-          <div class="hud-item-tag" id="invBrake">SECURE</div>
-        </div>
-
-        <div class="hud-item">
-          <div class="hud-item-meta">
-            <svg class="ico" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            <div class="hud-item-name">DoS Channel Throttle (&le; 100/s)</div>
-          </div>
-          <div class="hud-item-tag" id="invRate">MONITORED</div>
-        </div>
-
-        <div class="hud-btn-row">
-          <button class="hud-btn-restore" onclick="rootRestore()">
-            <svg class="ico" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-            Root Restore
-          </button>
-          <button class="hud-btn-panic" onclick="manualIsolate()">
-            <svg class="ico" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-            Panic Isolate
-          </button>
+        <div style="display: flex; gap: 8px;">
+          <button class="chip-titanium" onclick="loadLabSample('clean')">Clean Telemetry</button>
+          <button class="chip-titanium" onclick="loadLabSample('nop')">NOP Sled (\x90)</button>
+          <button class="chip-titanium alert" onclick="loadLabSample('shell')">High Entropy Shellcode</button>
         </div>
       </div>
 
-    </div>
-  </div>
+      <!-- Right: Hex Inspection Dump -->
+      <div class="lab-card">
+        <div class="hud-card-header">
+          <div class="hud-card-title">
+            <svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+            Microkernel Memory Hex Buffer View
+          </div>
+          <div class="hud-badge-platinum">MMU DUMP</div>
+        </div>
 
-  <!-- CRITICAL ECU SUBSYSTEM TRAY GRID -->
-  <div class="section-headline">Secured Automotive Subsystem Channels (ISO 26262 ASIL-D)</div>
-  <div class="catalog-grid">
-    <div class="catalog-tray">
-      <div class="tray-icon-box"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
-      <div class="tray-body"><div class="tray-title">Braking ECU (0x108)</div><div class="tray-price">ASIL-D ACTUATOR</div></div>
-    </div>
-    <div class="catalog-tray">
-      <div class="tray-icon-box"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg></div>
-      <div class="tray-body"><div class="tray-title">EPS Steering (0x120)</div><div class="tray-price">STEER-BY-WIRE</div></div>
-    </div>
-    <div class="catalog-tray">
-      <div class="tray-icon-box"><svg class="ico" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-      <div class="tray-body"><div class="tray-title">Powertrain BMS (0x150)</div><div class="tray-price">800V HV PACK</div></div>
-    </div>
-    <div class="catalog-tray">
-      <div class="tray-icon-box"><svg class="ico" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/></svg></div>
-      <div class="tray-body"><div class="tray-title">Digital Cockpit (0x210)</div><div class="tray-price">QNX NEUTRINO</div></div>
-    </div>
-    <div class="catalog-tray">
-      <div class="tray-icon-box"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-      <div class="tray-body"><div class="tray-title">ADAS Radar/LiDAR (0x240)</div><div class="tray-price">EMERGENCY BRAKE</div></div>
-    </div>
-    <div class="catalog-tray">
-      <div class="tray-icon-box"><svg class="ico" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-      <div class="tray-body"><div class="tray-title">Gateway Router (0x280)</div><div class="tray-price">SECURE ETHERNET</div></div>
-    </div>
-  </div>
+        <div class="hex-viewer-box" id="hexViewer">
+          <!-- Injected via JavaScript -->
+        </div>
 
-  <!-- REAL-TIME TELEMETRY AUDIT LOG -->
-  <div class="audit-cockpit">
-    <div class="audit-grid-header">
-      <div>IPC Buffer Payload / Dispatched Message</div>
-      <div>Subsystem Channel</div>
-      <div>SHA-256 Flight Hash</div>
-      <div>Kernel Verdict</div>
-    </div>
-    <div class="audit-stream-deck" id="auditStream">
-      <div class="audit-row">
-        <div class="audit-payload">CAN:0x108:BRAKE_PRESSURE=42_BAR:ABS_ACTIVE:SYNC_EOK</div>
-        <div class="audit-channel">Braking ECU (0x108)</div>
-        <div class="audit-hash">7a8b9c...4f1e</div>
-        <div><span class="badge-clean">COMMITTED (0.018ms)</span></div>
-      </div>
-      <div class="audit-row">
-        <div class="audit-payload">CAN:0x120:STEER_ANGLE=+0.18_RAD:TORQUE_NOMINAL</div>
-        <div class="audit-channel">EPS Steering (0x120)</div>
-        <div class="audit-hash">b1c2d3...8e9a</div>
-        <div><span class="badge-clean">COMMITTED (0.019ms)</span></div>
+        <div style="margin-top: 14px; padding: 12px; background: #080C14; border: 1px solid var(--border); border-radius: 6px; font-family: var(--font-mono); font-size: 10px; color: var(--text-slate);">
+          <div style="color: var(--platinum-bright); font-weight: 700; margin-bottom: 4px;">Memory Invariant Enforcement:</div>
+          <div>&bull; Stack Non-Executable: <span style="color: var(--emerald);">PROT_READ | PROT_WRITE (Zero Execution)</span></div>
+          <div>&bull; Shannon Cutoff: <span style="color: var(--emerald);">&le; 7.20 bits/byte Strict Gate</span></div>
+          <div>&bull; Max Frame Buffer: <span style="color: var(--emerald);">&le; 512 Bytes (Zero Buffer Overflow)</span></div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- TAMPER-EVIDENT FLIGHT RECORDER STREAM -->
-  <div class="ledger-deck">
-    <div class="ledger-header">
-      <div class="ledger-title">
-        <svg class="ico" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        Tamper-Evident SHA-256 Flight Recorder Block Ledger
+  <!-- ════════════════════════ TAB 4: FLIGHT RECORDER & AUDIT CHAIN ════════════════════════ -->
+  <div id="tab-ledger" class="tab-panel">
+    <div class="cockpit-top-section">
+      <div class="hero-kicker-row">
+        <div class="hero-kicker">
+          <svg class="ico" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          BlackBerry QNX Flight Recorder Ledger
+        </div>
+        <div class="brand-code">SHA-256 PARENT-LINKED</div>
       </div>
-      <div class="titanium-pill" id="blockCountPill">11 BLOCKS SEALED</div>
+      <h1 class="hero-headline">
+        <span class="hero-headline-titanium">Tamper-Evident Flight Recorder</span><br>
+        <span class="hero-headline-ice">Cryptographic Block Ledger for ISO 26262 Audits</span>
+      </h1>
+      <p class="hero-sub">
+        Every message dispatch, buffer inspection, rate limit check, and channel circuit trip is hashed with SHA-256 and chained into parent-linked blocks. If a compromised ECU or firmware update retroactively modifies flight telemetry, the cryptographic hash chain immediately fractures.
+      </p>
     </div>
-    <div class="flight-blocks-row" id="flightBlocksBox">
-      <!-- Injected by JavaScript -->
+
+    <div class="audit-action-bar">
+      <div style="display: flex; gap: 8px;">
+        <button class="btn-chain-verify" onclick="verifyFullChain()">
+          <svg class="ico" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          Verify Cryptographic Chain (SHA-256)
+        </button>
+        <button class="btn-tamper-test" onclick="simulateTamper()">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+          Simulate Retroactive Block Tamper
+        </button>
+      </div>
+      <button class="btn-export-json" onclick="exportLedgerJSON()">
+        <svg class="ico" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Export Flight Evidence (JSON)
+      </button>
+    </div>
+
+    <div id="fullLedgerStream">
+      <!-- Full ledger cards injected by JavaScript -->
     </div>
   </div>
 
@@ -1313,17 +1928,28 @@
 
 <script>
   /* ═══════════════════════════════════════════════════════════════════
-     QNXGUARD SENTINEL ENGINE — Pure JS Simulation Matching QNX 8.0 Kernel
+     QNXGUARD SENTINEL ENGINE — Multi-Screen Pure JS Architecture
      ═══════════════════════════════════════════════════════════════════ */
 
   let circuitState = 'ARMED';
   let blockCount = 11;
 
   const flightBlocks = [
-    { idx: 8, evt: 'TELEMETRY_FRAME_DELIVERED', hash: '4f6e3a9b1c2d8e7a6f5e4d3c2b1a0f9e8d7c6b5a4f3e2d1c0b9a8f7e6d5c4b3a', prev: '9a8f7e6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0f9e8d7c6b5a4f3e2d1c0b9a8f', isAlert: false },
+    { idx: 7, evt: 'MICROKERNEL_INIT', hash: '8f7e6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0f9e8d7c6b5a4f3e2d1c0b9a8f7e', prev: '0000000000000000000000000000000000000000000000000000000000000000', isAlert: false },
+    { idx: 8, evt: 'CHANNEL_ATTACH_8_ECUS', hash: '4f6e3a9b1c2d8e7a6f5e4d3c2b1a0f9e8d7c6b5a4f3e2d1c0b9a8f7e6d5c4b3a', prev: '8f7e6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0f9e8d7c6b5a4f3e2d1c0b9a8f7e', isAlert: false },
     { idx: 9, evt: 'ENTROPY_ANALYSIS_BASELINE', hash: 'c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2', prev: '4f6e3a9b1c2d8e7a6f5e4d3c2b1a0f9e8d7c6b5a4f3e2d1c0b9a8f7e6d5c4b3a', isAlert: false },
     { idx: 10, evt: 'CAN_FILTER_ASIL_D_VERIFIED', hash: '5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c', prev: 'c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2', isAlert: false }
   ];
+
+  /* Tab Switching */
+  function switchTab(tabId, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    btn.classList.add('active');
+    if (tabId === 'tab-entropy') updateLabEntropy();
+    if (tabId === 'tab-ledger') renderFullLedger();
+  }
 
   function setCmd(cmd) {
     document.getElementById('agentInput').value = cmd;
@@ -1464,7 +2090,7 @@
     setCmd('CAN:0x108:BURST_FLOOD_MSG_#9999');
     appendLine('line-crimson', `[BURST_ATTACK] 150 consecutive MsgSend frames dispatched in 2 milliseconds.`);
     setTimeout(() => {
-      appendLine('line-crimson', `[RATE_LIMITER] Velocity threshold breached (&gt; 100 msgs/sec). Channel flood isolated.`);
+      appendLine('line-crimson', `[RATE_LIMITER] Velocity threshold breached (> 100 msgs/sec). Channel flood isolated.`);
       tripCircuit('DOS_BURST_FLOOD', 'BURST_FLOOD_150_MSGS');
     }, 200);
   }
@@ -1485,6 +2111,12 @@
     appendLine('line-ice', `[RE-ARMED] All 8 microkernel channels reattached and certified ARMED.`);
     recordAudit('ROOT_RESTORE_TOKEN_HMAC_SHA256', 'Kernel Orchestrator', 'RE-ARMED (0.012ms)', 'badge-clean');
     addFlightBlock('ADMIN_ROOT_REARM', false);
+
+    // Reset ECU matrix statuses
+    for (let i = 1; i <= 4; i++) {
+      const el = document.getElementById('ecu-status-' + i);
+      if (el) { el.innerText = 'CONNECTED'; el.style.color = 'var(--emerald)'; }
+    }
   }
 
   function manualIsolate() {
@@ -1498,6 +2130,65 @@
     addFlightBlock('PANIC_ISOLATION_TRIGGERED', true);
   }
 
+  /* ECU Matrix Functions */
+  function simulateECU(id, msg) {
+    switchTab('tab-sentinel', document.querySelector('.tab-btn'));
+    setCmd(msg);
+  }
+
+  function corruptECU(id, msg) {
+    const el = document.getElementById('ecu-status-' + id);
+    if (el) { el.innerText = 'ISOLATED (EBADF)'; el.style.color = 'var(--crimson)'; }
+    switchTab('tab-sentinel', document.querySelector('.tab-btn'));
+    setCmd(msg);
+  }
+
+  /* Shannon Entropy Lab Functions */
+  function updateLabEntropy() {
+    const text = document.getElementById('labInput').value;
+    const h = calculateEntropy(text);
+    document.getElementById('labEntropyVal').innerHTML = h.toFixed(3) + ' <span style="font-size: 14px; color: var(--text-slate);">bits/byte</span>';
+    const pct = Math.min(100, Math.max(0, (h / 8.0) * 100));
+    document.getElementById('labEntropyBar').style.width = pct + '%';
+
+    // Render Hex View
+    renderHexDump(text);
+  }
+
+  function loadLabSample(type) {
+    const area = document.getElementById('labInput');
+    if (type === 'clean') {
+      area.value = 'CAN_FRAME:0x108:BRAKE_PRESSURE=42_BAR:ABS_ARMED:NOMINAL';
+    } else if (type === 'nop') {
+      area.value = '\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x31\xc0\x50\x68//sh\x68/bin';
+    } else if (type === 'shell') {
+      area.value = '\xbf\x9e\x71\x8a\xc3\x52\x9d\x41\xfe\xbb\x88\x12\x49\xa7\xee\x2b\x65\x90\xcc\xdd\x0f\x05\x48\x31\xff\x48\x31\xf6';
+    }
+    updateLabEntropy();
+  }
+
+  function renderHexDump(text) {
+    const box = document.getElementById('hexViewer');
+    let out = '';
+    const bytes = [];
+    for (let i = 0; i < Math.min(text.length, 64); i++) {
+      bytes.push(text.charCodeAt(i) & 0xFF);
+    }
+    for (let i = 0; i < bytes.length; i += 8) {
+      const chunk = bytes.slice(i, i + 8);
+      const hex = chunk.map(b => {
+        const h = b.toString(16).padStart(2, '0');
+        if (b === 0x90) return `<span class="hex-nop">${h}</span>`;
+        if (b > 0x7E || b < 0x20) return `<span class="hex-shell">${h}</span>`;
+        return h;
+      }).join(' ');
+      const ascii = chunk.map(b => (b >= 32 && b <= 126) ? String.fromCharCode(b) : '.').join('');
+      out += `<div>0x${i.toString(16).padStart(4, '0')}:  ${hex.padEnd(32)} <span class="hex-ascii">${ascii}</span></div>`;
+    }
+    box.innerHTML = out || '<div>0x0000:  00 00 00 00 00 00 00 00 <span class="hex-ascii">........</span></div>';
+  }
+
+  /* Cryptographic Flight Recorder Functions */
   function addFlightBlock(evt, isAlert) {
     blockCount++;
     document.getElementById('metricBlocks').innerText = blockCount + ' SEALED BLOCKS';
@@ -1531,7 +2222,67 @@
     }
   }
 
+  function renderFullLedger() {
+    const deck = document.getElementById('fullLedgerStream');
+    deck.innerHTML = '';
+    for (let i = flightBlocks.length - 1; i >= 0; i--) {
+      const b = flightBlocks[i];
+      const div = document.createElement('div');
+      div.className = 'full-ledger-card ' + (b.tampered ? 'tampered' : '');
+      div.id = 'full-block-' + b.idx;
+      div.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <strong style="color: ${b.tampered ? 'var(--crimson)' : (b.isAlert ? 'var(--crimson)' : 'var(--emerald)')};">BLOCK #${b.idx} // ${b.evt}</strong>
+            <span class="hud-item-tag" style="background: ${b.tampered ? 'rgba(225,29,72,0.2)' : 'rgba(0,163,224,0.1)'}; color: ${b.tampered ? 'var(--crimson)' : 'var(--ice)'};">
+              ${b.tampered ? 'TAMPER DETECTED' : 'CRYPTOGRAPHICALLY SEALED'}
+            </span>
+          </div>
+          <span style="color: var(--text-muted); font-size: 9.5px;">TS: +${(b.idx * 0.018).toFixed(3)}ms</span>
+        </div>
+        <div style="font-size: 10px; color: var(--text-slate); margin-bottom: 2px;">SHA-256 Hash: <span style="color: ${b.tampered ? 'var(--crimson)' : 'var(--ice)'};">${b.hash}</span></div>
+        <div style="font-size: 10px; color: var(--text-muted);">Parent Block Hash: ${b.prev}</div>
+      `;
+      deck.appendChild(div);
+    }
+  }
+
+  function verifyFullChain() {
+    let valid = true;
+    for (let i = 1; i < flightBlocks.length; i++) {
+      if (flightBlocks[i].prev !== flightBlocks[i - 1].hash) {
+        valid = false;
+        break;
+      }
+    }
+    if (valid) {
+      alert('✓ CRYPTOGRAPHIC AUDIT VERIFICATION PASSED:\n\nAll ' + flightBlocks.length + ' SHA-256 parent links are intact. Zero ledger tampering detected.');
+    } else {
+      alert('⚠ CRITICAL AUDIT FAILURE:\n\nParent hash mismatch detected in ledger sequence. Chain integrity has been compromised!');
+    }
+  }
+
+  function simulateTamper() {
+    if (flightBlocks.length >= 2) {
+      const target = flightBlocks[1];
+      target.hash = 'ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
+      target.tampered = true;
+      renderFullLedger();
+      alert('⚠ SIMULATED ATTACK INJECTED:\n\nBlock #' + target.idx + ' was maliciously modified in memory.\nNotice the red warning indicator and fractured parent link.');
+    }
+  }
+
+  function exportLedgerJSON() {
+    const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(flightBlocks, null, 2));
+    const dl = document.createElement('a');
+    dl.setAttribute('href', dataStr);
+    dl.setAttribute('download', 'qnxguard_flight_recorder_audit_ledger.json');
+    dl.click();
+  }
+
+  // Initial Boot
   renderBlocks();
+  updateLabEntropy();
 </script>
 </body>
 </html>
